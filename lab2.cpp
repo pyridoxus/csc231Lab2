@@ -31,23 +31,9 @@ Keyboard input:
 'q' key, quit program
 **********************************************************************/
 
-#include <iostream>
-using namespace std;
-#include <math.h>
-#include <GL/glut.h>
+#include "lab2.h"
 
-void myInit();
-void myDraw();
-void keyboard( unsigned char, int, int );
-
-float triVert[3][2] =
-{
-	-1.0, -1.0,
-	1.0, -1.0,
-	0.0, 1.0
-};
-
-void main( int argc, char *argv[] )
+int main( int argc, char *argv[] )	// return int because of Linux tool chain
 {
   // Initialize window system
   glutInit( &argc, argv );
@@ -64,6 +50,7 @@ void main( int argc, char *argv[] )
 
 	// Event loop
   glutMainLoop();
+  return 0;
 }
 
 // Initialize drawing
@@ -88,9 +75,7 @@ void myDraw()
   // Draw triangle in initial position
   glColor3f( 1.0, 0.0, 0.0 );
   glBegin( GL_LINE_LOOP );
-	  glVertex2f( triVert[0][0], triVert[0][1] );
-		glVertex2f( triVert[1][0], triVert[1][1] );
-		glVertex2f( triVert[2][0], triVert[2][1] );
+  	triangle.draw();
 	glEnd();
 
   // Draw triangle in new position here
@@ -104,11 +89,20 @@ void keyboard( unsigned char key, int x, int y )
 {
   // Process keys
   switch (key)
-    {
-	case 'q':						// exit program
+  {
+  	case 's':
+  		triangle.scale();
+  	break;
+  	case 'r':
+  		triangle.rotate();
+  	break;
+  	case 't':
+  		triangle.translate();
+  	break;
+  	case 'q':						// exit program
       exit(1);
-      break;
-    }
+    break;
+  }
 
   // Redraw the scene
   glutPostRedisplay();
