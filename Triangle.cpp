@@ -1,10 +1,3 @@
-/*
- * Triangle.cpp
- *
- *  Created on: Sep 20, 2011
- *      Author: pyridoxus
- */
-
 #include "Triangle.h"
 
 Triangle::Triangle()
