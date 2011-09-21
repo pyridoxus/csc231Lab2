@@ -15,17 +15,17 @@ Triangle::~Triangle()
 {
 }
 
-void Triangle::scale(void)
+void Triangle::scale(float s)
 {
 	return;
 }
 
-void Triangle::rotate(void)
+void Triangle::rotate(float a)
 {
 	return;
 }
 
-void Triangle::translate(void)
+void Triangle::translate(float x, float y)
 {
 	return;
 }
