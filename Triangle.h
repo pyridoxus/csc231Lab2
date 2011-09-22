@@ -2,7 +2,7 @@
 #define TRIANGLE_H_
 
 #include <GL/glut.h>
-#include "Vector.h"
+#include <math.h>
 
 class Triangle
 {
@@ -13,9 +13,11 @@ class Triangle
 		void rotate(float a);							// Rotate triangle by a degrees
 		void translate(float x, float y);	// Translate triangle by (x,y)
 		void draw(void);									// Draw the triangle
+		void print(void);									// Print points for debugging
 	private:
-		float triVert[3][2];							// Points in the triangle
-		void multiply(int p, Vector v);		// Multiply index to point p by vector v
+		float triVert[3][3];							// Points in the triangle
+		float results[3][2];							// Results of transforming triangle
+		void transform(float **m);				// Transform all points with matrix m
 };
 
 #endif
