@@ -11,7 +11,8 @@ Triangle::Triangle()
 	this->triVert[2][0] = 0.0;
 	this->triVert[2][1] = 1.0;
 	this->triVert[2][2] =	1.0;
-	tx = ty = tr = ts = 0.0;
+	this->tx = this->ty = this->tr = 0.0;
+	this->ts = 1.0;
 	return;
 }
 
@@ -21,10 +22,11 @@ Triangle::~Triangle()
 
 void Triangle::scale(float s)
 {
-	this->ts += s;
+	this->ts *= s;
 	float m[3][3] = { { this->ts,        0, 0 },
 						  			{        0, this->ts, 0 },
 							  		{        0,        0, 1 } };
+	cout << "Scale..." << endl;
 	this->transform(m);
 	return;
 }
@@ -36,6 +38,7 @@ void Triangle::rotate(float a)
 	float m[3][3] = { { cos(this->tr), -sin(this->tr), 0 },
 								  	{ sin(this->tr),  cos(this->tr), 0 },
 					  				{             0,              0, 1 } };
+	cout << "Rotate..." << endl;
 	this->transform(m);
 	return;
 }
@@ -47,6 +50,9 @@ void Triangle::translate(float x, float y)
 	float m[3][3] = { { 1, 0, this->tx },
 							  		{ 0, 1, this->ty },
 								  	{ 0, 0,        1 } };
+	cout << "Translate..." << endl;
+	cout << "tx: " << this->tx << endl;
+	cout << "ty: " << this->ty << endl;
 	this->transform(m);
 	return;
 }
@@ -73,12 +79,15 @@ void Triangle::transform(float m[3][3])	// Transform points with matrix m
 	for(int p = 0; p < 3; p++)
 	{
 		this->results[p][0] = this->results[p][1] = this->results[p][2] = 0.0;
+		cout << "Point " << p << endl;
 		for(y = 0; y < 3; y++)
 		{
 			for(x = 0; x < 3; x++)
 			{
 				this->results[p][y] += this->triVert[p][x] * m[y][x];
+				cout << this->triVert[p][x] << " " << m[y][x] << endl;
 			}
+			cout << endl;
 		}
 	}
 	this->print();

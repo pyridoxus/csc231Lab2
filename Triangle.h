@@ -20,7 +20,7 @@ class Triangle
 		void print(void);									// Print points for debugging
 	private:
 		float triVert[3][3];							// Points in the triangle
-		float results[3][2];							// Results of transforming triangle
+		float results[3][3];							// Results of transforming triangle
 		float tx;													// Translation X from original
 		float ty;													// Translation Y from original
 		float tr;													// Rotation from original
