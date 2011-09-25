@@ -39,7 +39,7 @@ int main( int argc, char *argv[] )	// return int because of Linux tool chain
   glutInit( &argc, argv );
   glutInitDisplayMode( GLUT_SINGLE | GLUT_RGB );
   glutInitWindowSize( 640, 480 );
-  glutCreateWindow( "Lab 4" );
+  glutCreateWindow( "Lab 2" );
 
   // Initialize graphics
   myInit();
