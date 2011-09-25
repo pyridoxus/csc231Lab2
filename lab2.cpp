@@ -75,10 +75,14 @@ void myDraw()
   // Draw triangle in initial position
   glColor3f( 1.0, 0.0, 0.0 );
   glBegin( GL_LINE_LOOP );
-  	triangle.draw();
+  	triangle.drawOriginal();
 	glEnd();
 
   // Draw triangle in new position here
+  glColor3f( 0.0, 1.0, 0.0 );
+  glBegin( GL_LINE_LOOP );
+  	triangle.drawNew();
+	glEnd();
 
   // Execute draw commands
   glFlush();
@@ -91,13 +95,13 @@ void keyboard( unsigned char key, int x, int y )
   switch (key)
   {
   	case 's':
-  		triangle.scale();
+  		triangle.scale(1.1);
   	break;
   	case 'r':
-  		triangle.rotate();
+  		triangle.rotate(-2.0);
   	break;
   	case 't':
-  		triangle.translate();
+  		triangle.translate(0.1, 0.1);
   	break;
   	case 'q':						// exit program
       exit(1);
