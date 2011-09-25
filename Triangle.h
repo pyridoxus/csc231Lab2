@@ -21,6 +21,10 @@ class Triangle
 	private:
 		float triVert[3][3];							// Points in the triangle
 		float results[3][2];							// Results of transforming triangle
+		float tx;													// Translation X from original
+		float ty;													// Translation Y from original
+		float tr;													// Rotation from original
+		float ts;													// Scale from original
 		void transform(float m[3][3]);		// Transform all points with matrix m
 };
 

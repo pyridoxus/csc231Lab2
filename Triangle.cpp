@@ -11,6 +11,7 @@ Triangle::Triangle()
 	this->triVert[2][0] = 0.0;
 	this->triVert[2][1] = 1.0;
 	this->triVert[2][2] =	1.0;
+	tx = ty = tr = ts = 0.0;
 	return;
 }
 
@@ -20,9 +21,10 @@ Triangle::~Triangle()
 
 void Triangle::scale(float s)
 {
-	float m[3][3] = { { s, 0, 0 },
-						  			{ 0, s, 0 },
-							  		{ 0, 0, 1 } };
+	this->ts += s;
+	float m[3][3] = { { this->ts,        0, 0 },
+						  			{        0, this->ts, 0 },
+							  		{        0,        0, 1 } };
 	this->transform(m);
 	return;
 }
@@ -30,18 +32,21 @@ void Triangle::scale(float s)
 void Triangle::rotate(float a)
 {
 	float d = a * 3.141592654 / 180.0;	// Convert degrees into radians
-	float m[3][3] = { { cos(d), -sin(d), 0 },
-								  	{ sin(d),  cos(d), 0 },
-					  				{      0,       0, 1 } };
+	this->tr += d;
+	float m[3][3] = { { cos(this->tr), -sin(this->tr), 0 },
+								  	{ sin(this->tr),  cos(this->tr), 0 },
+					  				{             0,              0, 1 } };
 	this->transform(m);
 	return;
 }
 
 void Triangle::translate(float x, float y)
 {
-	float m[3][3] = { { 1, 0, x },
-							  		{ 0, 1, y },
-								  	{ 0, 0, 1 } };
+	this->tx += x;
+	this->ty += y;
+	float m[3][3] = { { 1, 0, this->tx },
+							  		{ 0, 1, this->ty },
+								  	{ 0, 0,        1 } };
 	this->transform(m);
 	return;
 }
